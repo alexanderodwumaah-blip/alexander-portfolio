@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin | Alexander Opoku Dwumaah</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">AOD</div>
+      <h1>Portfolio Admin</h1>
+      <p>Sign in to manage your portfolio content.</p>
+      <form id="loginForm" autocomplete="off">
+        <div class="field-group">
+          <label for="adminPass">Password</label>
+          <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="current-password">
+        </div>
+        <div class="login-error" id="loginError">Incorrect password. Try again.</div>
+        <button type="submit" class="btn-primary full-width">Sign in</button>
+      </form>
+      <a href="index.html" class="back-link">&larr; Back to portfolio</a>
+    </div>
+  </div>
+
+  <!-- ADMIN SHELL -->
+  <div class="admin-shell" id="adminShell" style="display:none;">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">AOD</div>
+        <div>
+          <div class="sidebar-name">Admin Panel</div>
+          <div class="sidebar-sub">Portfolio Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="overview">
+          <span class="nav-icon">&#9632;</span> Overview
+        </button>
+        <button class="nav-item" data-tab="projects">
+          <span class="nav-icon">&#9650;</span> Projects
+        </button>
+        <button class="nav-item" data-tab="webwork">
+          <span class="nav-icon">&#9670;</span> Digital Work
+        </button>
+        <button class="nav-item" data-tab="skills">
+          <span class="nav-icon">&#9679;</span> Skills
+        </button>
+        <button class="nav-item" data-tab="cv">
+          <span class="nav-icon">&#9632;</span> CV Upload
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <span class="nav-icon">&#9881;</span> Settings
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="view-site-btn">View live site &nearr;</a>
+        <button class="logout-btn" id="logoutBtn">Sign out</button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <div class="admin-topbar">
+        <div class="topbar-title" id="topbarTitle">Overview</div>
+        <div class="topbar-actions">
+          <span class="save-indicator" id="saveIndicator"></span>
+          <button class="btn-primary" id="topbarSaveBtn">Save changes</button>
+        </div>
+      </div>
+
+      <!-- ── TAB: OVERVIEW ── -->
+      <section class="tab-panel active" id="tab-overview">
+        <div class="overview-grid">
+          <div class="stat-card">
+            <div class="stat-icon">&#9650;</div>
+            <div class="stat-value" id="ov-projects">6</div>
+            <div class="stat-label">Engineering Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">&#9670;</div>
+            <div class="stat-value" id="ov-webwork">5</div>
+            <div class="stat-label">Digital Products</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">&#9679;</div>
+            <div class="stat-value" id="ov-skills">4</div>
+            <div class="stat-label">Skill Categories</div>
+          </div>
+          <div class="stat-card accent">
+            <div class="stat-icon">&#9632;</div>
+            <div class="stat-value">Live</div>
+            <div class="stat-label">Portfolio Status</div>
+          </div>
+        </div>
+
+        <div class="overview-quick">
+          <h2>Quick actions</h2>
+          <div class="quick-actions">
+            <button class="quick-btn" onclick="switchTab('projects')">
+              <strong>Add new project</strong>
+              <span>Engineering or research project</span>
+            </button>
+            <button class="quick-btn" onclick="switchTab('webwork')">
+              <strong>Add digital product</strong>
+              <span>Web app or platform</span>
+            </button>
+            <button class="quick-btn" onclick="switchTab('skills')">
+              <strong>Add skill category</strong>
+              <span>Technical or professional skill</span>
+            </button>
+            <button class="quick-btn" onclick="switchTab('cv')">
+              <strong>Update CV</strong>
+              <span>Upload new CV PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="overview-info">
+          <h2>How the admin works</h2>
+          <div class="info-grid">
+            <div class="info-card">
+              <h4>Projects and Digital Work</h4>
+              <p>Add, edit or remove entries. Changes are saved to your browser's local storage and exported as a JSON snippet you paste into script.js or index.html.</p>
+            </div>
+            <div class="info-card">
+              <h4>Skills</h4>
+              <p>Add or rename skill categories and update the descriptions shown in the Capabilities section of your portfolio.</p>
+            </div>
+            <div class="info-card">
+              <h4>CV Upload</h4>
+              <p>Generate the exact filename and path instructions for placing your CV PDF in the cv/ folder so the download buttons work correctly.</p>
+            </div>
+            <div class="info-card">
+              <h4>Deploying changes</h4>
+              <p>After making changes, use the generated code snippets and run <code>firebase deploy --only hosting</code> from your portfolio folder to push live.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TAB: PROJECTS ── -->
+      <section class="tab-panel" id="tab-projects">
+        <div class="panel-header">
+          <div>
+            <h2>Engineering Projects</h2>
+            <p>Manage your engineering and research project cards and modal content.</p>
+          </div>
+          <button class="btn-primary" id="addProjectBtn">+ Add project</button>
+        </div>
+
+        <div class="item-list" id="projectList"></div>
+
+        <!-- Project form -->
+        <div class="form-drawer" id="projectForm" style="display:none;">
+          <h3 id="projectFormTitle">Add project</h3>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Project key (no spaces, e.g. <em>newproject</em>)</label>
+              <input type="text" id="pKey" placeholder="e.g. newproject">
+            </div>
+            <div class="field-group">
+              <label>Display number</label>
+              <input type="text" id="pNumber" placeholder="e.g. 07">
+            </div>
+            <div class="field-group span-2">
+              <label>Type / Category label</label>
+              <input type="text" id="pType" placeholder="e.g. Engineering Research · 2026">
+            </div>
+            <div class="field-group span-2">
+              <label>Title</label>
+              <input type="text" id="pTitle" placeholder="Project title">
+            </div>
+            <div class="field-group span-2">
+              <label>Short description (shown on card)</label>
+              <textarea id="pDesc" rows="3" placeholder="Brief description visible on the portfolio page..."></textarea>
+            </div>
+            <div class="field-group span-2">
+              <label>Tags (comma separated)</label>
+              <input type="text" id="pTags" placeholder="Smart Grid, Power Systems, Python">
+            </div>
+            <div class="field-group span-2">
+              <label>Full modal body (HTML supported)</label>
+              <textarea id="pBody" rows="8" placeholder="<p>Full project overview shown in the modal...</p>&#10;<ul><li>Point one</li></ul>"></textarea>
+            </div>
+            <div class="field-group">
+              <label>Featured card?</label>
+              <select id="pFeatured">
+                <option value="no">No</option>
+                <option value="yes">Yes (spans full width)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" id="cancelProjectBtn">Cancel</button>
+            <button class="btn-primary" id="saveProjectBtn">Save project</button>
+          </div>
+        </div>
+
+        <div class="export-box" id="projectExport" style="display:none;">
+          <h4>Generated code - paste into script.js projectData object</h4>
+          <textarea id="projectExportCode" rows="14" readonly></textarea>
+          <button class="btn-secondary copy-btn" data-target="projectExportCode">Copy to clipboard</button>
+        </div>
+      </section>
+
+      <!-- ── TAB: DIGITAL WORK ── -->
+      <section class="tab-panel" id="tab-webwork">
+        <div class="panel-header">
+          <div>
+            <h2>Digital Work</h2>
+            <p>Manage the web products and platforms shown in the Digital Work section.</p>
+          </div>
+          <button class="btn-primary" id="addWebBtn">+ Add product</button>
+        </div>
+
+        <div class="item-list" id="webList"></div>
+
+        <!-- Web work form -->
+        <div class="form-drawer" id="webForm" style="display:none;">
+          <h3 id="webFormTitle">Add digital product</h3>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Display index</label>
+              <input type="text" id="wIndex" placeholder="e.g. 06">
+            </div>
+            <div class="field-group">
+              <label>Type / Category</label>
+              <input type="text" id="wType" placeholder="e.g. Career Tool">
+            </div>
+            <div class="field-group span-2">
+              <label>Product name</label>
+              <input type="text" id="wName" placeholder="Product or platform name">
+            </div>
+            <div class="field-group span-2">
+              <label>Description</label>
+              <textarea id="wDesc" rows="3" placeholder="What the product does and who it is for..."></textarea>
+            </div>
+            <div class="field-group span-2">
+              <label>Live site URL</label>
+              <input type="url" id="wUrl" placeholder="https://your-product.web.app/">
+            </div>
+            <div class="field-group">
+              <label>Footer label</label>
+              <input type="text" id="wLabel" placeholder="e.g. Student learning platform">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" id="cancelWebBtn">Cancel</button>
+            <button class="btn-primary" id="saveWebBtn">Save product</button>
+          </div>
+        </div>
+
+        <div class="export-box" id="webExport" style="display:none;">
+          <h4>Generated HTML - paste into the web-grid section in index.html</h4>
+          <textarea id="webExportCode" rows="14" readonly></textarea>
+          <button class="btn-secondary copy-btn" data-target="webExportCode">Copy to clipboard</button>
+        </div>
+      </section>
+
+      <!-- ── TAB: SKILLS ── -->
+      <section class="tab-panel" id="tab-skills">
+        <div class="panel-header">
+          <div>
+            <h2>Skills and Capabilities</h2>
+            <p>Manage the four capability cards shown in the Capabilities section.</p>
+          </div>
+          <button class="btn-primary" id="addSkillBtn">+ Add skill category</button>
+        </div>
+
+        <div class="item-list" id="skillList"></div>
+
+        <!-- Skill form -->
+        <div class="form-drawer" id="skillForm" style="display:none;">
+          <h3 id="skillFormTitle">Add skill category</h3>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Display number</label>
+              <input type="text" id="sNumber" placeholder="e.g. 05">
+            </div>
+            <div class="field-group">
+              <label>Category title</label>
+              <input type="text" id="sTitle" placeholder="e.g. Project Management">
+            </div>
+            <div class="field-group span-2">
+              <label>Description</label>
+              <textarea id="sDesc" rows="3" placeholder="Skills and tools in this category..."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" id="cancelSkillBtn">Cancel</button>
+            <button class="btn-primary" id="saveSkillBtn">Save skill</button>
+          </div>
+        </div>
+
+        <div class="export-box" id="skillExport" style="display:none;">
+          <h4>Generated HTML - paste into the skills-grid in index.html</h4>
+          <textarea id="skillExportCode" rows="10" readonly></textarea>
+          <button class="btn-secondary copy-btn" data-target="skillExportCode">Copy to clipboard</button>
+        </div>
+      </section>
+
+      <!-- ── TAB: CV UPLOAD ── -->
+      <section class="tab-panel" id="tab-cv">
+        <div class="panel-header">
+          <div>
+            <h2>CV Management</h2>
+            <p>Upload your CV so visitors can download it directly from the portfolio.</p>
+          </div>
+        </div>
+
+        <div class="cv-instructions">
+          <div class="cv-status" id="cvStatus">
+            <div class="cv-status-icon">📄</div>
+            <div>
+              <strong id="cvStatusTitle">CV not uploaded yet</strong>
+              <p id="cvStatusText">Follow the steps below to add your CV to the portfolio.</p>
+            </div>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h4>Rename your CV file</h4>
+                <p>Save your CV PDF with this exact filename:</p>
+                <code class="filename">Alexander-Opoku-Dwumaah-CV.pdf</code>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h4>Place the file in the cv folder</h4>
+                <p>Copy the file into this folder inside your portfolio project:</p>
+                <code class="filename">c:\Users\aleks\Desktop\WebDev_1\portfolio\cv\</code>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h4>Deploy to Firebase</h4>
+                <p>Open PowerShell, navigate to your portfolio folder and run:</p>
+                <code class="filename">firebase deploy --only hosting</code>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <h4>Verify the download buttons</h4>
+                <p>Visit your live site and click the "Download CV" buttons in the hero and contact sections to confirm the file downloads correctly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-check">
+            <h4>Check CV availability</h4>
+            <p>Click below to test if the CV file is accessible on your live site.</p>
+            <button class="btn-primary" id="checkCvBtn">Check CV availability</button>
+            <div class="cv-check-result" id="cvCheckResult" style="display:none;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TAB: SETTINGS ── -->
+      <section class="tab-panel" id="tab-settings">
+        <div class="panel-header">
+          <div>
+            <h2>Settings</h2>
+            <p>Admin password and portfolio configuration.</p>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h4>Change admin password</h4>
+            <p>Update the password used to access this admin panel.</p>
+            <div class="field-group">
+              <label>Current password</label>
+              <input type="password" id="currentPass" placeholder="Current password">
+            </div>
+            <div class="field-group">
+              <label>New password</label>
+              <input type="password" id="newPass" placeholder="New password (min 8 characters)">
+            </div>
+            <div class="field-group">
+              <label>Confirm new password</label>
+              <input type="password" id="confirmPass" placeholder="Repeat new password">
+            </div>
+            <div class="settings-msg" id="passMsg"></div>
+            <button class="btn-primary" id="changePassBtn">Update password</button>
+          </div>
+
+          <div class="settings-card">
+            <h4>Portfolio links</h4>
+            <p>Quick links to manage your portfolio.</p>
+            <div class="link-list">
+              <a href="index.html" target="_blank" class="settings-link">
+                <span>Live portfolio</span>
+                <span>&nearr;</span>
+              </a>
+              <a href="https://console.firebase.google.com/project/alexander-portfolio-69333" target="_blank" class="settings-link">
+                <span>Firebase Console</span>
+                <span>&nearr;</span>
+              </a>
+              <a href="https://github.com/alexanderodwumaah-blip/alexander-portfolio" target="_blank" class="settings-link">
+                <span>GitHub Repository</span>
+                <span>&nearr;</span>
+              </a>
+              <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="settings-link">
+                <span>Live hosted site</span>
+                <span>&nearr;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="settings-card danger-zone">
+            <h4>Reset admin data</h4>
+            <p>Clear all locally stored admin data (projects, skills, digital work) and revert to the defaults loaded from the portfolio.</p>
+            <button class="btn-danger" id="resetDataBtn">Reset all data</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

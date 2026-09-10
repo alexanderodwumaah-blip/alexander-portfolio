@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Alexander Opoku Dwumaah, Electrical and Electronic Engineer focused on power systems, controls, instrumentation, research and practical digital solutions.">
+  <meta name="description" content="Alexander Opoku Dwumaah - First Class Electrical and Electronic Engineer. Power systems, controls, instrumentation, research and digital solutions. Based in Ghana.">
   <meta name="author" content="Alexander Opoku Dwumaah">
-  <title>Alexander Opoku Dwumaah | Electrical & Electronic Engineer</title>
+  <meta property="og:title" content="Alexander Opoku Dwumaah | Electrical and Electronic Engineer">
+  <meta property="og:description" content="First Class Electrical Engineer. Power systems, controls, instrumentation and digital solutions. Based in Ghana.">
+  <meta property="og:type" content="website">
+  <title>Alexander Opoku Dwumaah | Electrical and Electronic Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- NAVIGATION -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="#home" aria-label="Alexander Opoku Dwumaah home">
@@ -21,10 +30,12 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="#about">About</a><a href="#journey">Journey</a>
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#web-work">Web Work</a><a href="#talks">Speaking</a>
+        <a href="#web-work">Digital Work</a>
+        <a href="#talks">Speaking</a>
         <a href="#leadership">Leadership</a>
         <a href="#research">Research</a>
         <a href="#contact">Contact</a>
@@ -33,80 +44,222 @@
   </header>
 
   <main id="home">
-    <section class="hero section">
-      <div class="hero-copy">
-        <p class="eyebrow">Electrical & Electronic Engineering</p>
-        <h1>Building practical solutions where engineering, power and technology meet.</h1>
-        <p class="hero-text">
-          I am Alexander Opoku Dwumaah, a First Class Electrical and Electronic Engineering graduate from the University of Energy and Natural Resources. My work spans power systems, controls and instrumentation, engineering research, student focused technology and practical software projects.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-dark" href="#projects">View selected work</a>
-          <a class="button button-light" href="#contact">Get in touch</a>
-        </div>
-        <div class="hero-meta">
-          <span>UENR, BSc Electrical & Electronic Engineering</span>
-          <span>CGPA 3.88 / 4.00</span>
-          <span>Ghana</span>
-        </div>
-      </div>
 
-      <aside class="hero-card">
-        <p class="card-label">Current direction</p>
-        <h2>Power systems, generation reliability and industrial controls.</h2>
-        <p>
-          I am building deeper expertise in power system operation, generation adequacy, fuel security, instrumentation, maintenance and control systems.
-        </p>
-        <a href="#research" class="text-link">Explore research direction <span>→</span></a>
-      </aside>
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-orb"></div>
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Available for graduate study and engineering opportunities
+          </div>
+
+          <h1 class="hero-title">
+            Building where<br>
+            <span class="line-accent">engineering, power</span><br>
+            and technology meet.
+          </h1>
+
+          <p class="hero-subtitle">
+            I am Alexander Opoku Dwumaah, a First Class Electrical and Electronic Engineering graduate from UENR. My work spans power systems, industrial controls and instrumentation, engineering research, and practical digital solutions.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View selected work</a>
+            <a class="btn btn-secondary" href="#contact">Get in touch</a>
+            <a class="btn btn-gold" href="cv/Alexander-Opoku-Dwumaah-CV.pdf" download>Download CV</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>3.88</strong>
+              <span>CGPA / 4.00</span>
+            </div>
+            <div class="hero-stat">
+              <strong>50+</strong>
+              <span>Students mentored</span>
+            </div>
+            <div class="hero-stat">
+              <strong>5+</strong>
+              <span>Live digital products</span>
+            </div>
+            <div class="hero-stat">
+              <strong>6+</strong>
+              <span>Speaking engagements</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Card -->
+        <aside class="hero-profile-card">
+          <div class="profile-img-wrap">
+            <div class="profile-img-inner">
+              <img
+                src="profile/profile_logo_color_transparent.png"
+                alt="Alexander Opoku Dwumaah"
+                width="110"
+                height="110"
+              >
+            </div>
+          </div>
+
+          <p class="profile-name">Alexander Opoku Dwumaah</p>
+          <p class="profile-title">Electrical and Electronic Engineer</p>
+
+          <div class="profile-details">
+            <div class="profile-detail-row">
+              <div class="profile-detail-icon">🎓</div>
+              <div>
+                <div class="profile-detail-label">Education</div>
+                <div class="profile-detail-value">BSc EEE - First Class, UENR</div>
+              </div>
+            </div>
+            <div class="profile-detail-row">
+              <div class="profile-detail-icon">⚡</div>
+              <div>
+                <div class="profile-detail-label">Current Role</div>
+                <div class="profile-detail-value">I&amp;C Engineer - Sunon Asogli Power</div>
+              </div>
+            </div>
+            <div class="profile-detail-row">
+              <div class="profile-detail-icon">📍</div>
+              <div>
+                <div class="profile-detail-label">Location</div>
+                <div class="profile-detail-value">Tema, Ghana</div>
+              </div>
+            </div>
+            <div class="profile-detail-row">
+              <div class="profile-detail-icon">🏆</div>
+              <div>
+                <div class="profile-detail-label">Achievement</div>
+                <div class="profile-detail-value">Best Graduating Student, 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-status">
+            <span class="status-dot"></span>
+            Open to graduate study and opportunities
+          </div>
+        </aside>
+
+      </div>
     </section>
 
-    <section class="profile-strip"><div><span>01</span><strong>First Class Engineer</strong><small>FGPA 3.88 / 4.00</small></div><div><span>02</span><strong>Industrial Controls</strong><small>Thermal power generation</small></div><div><span>03</span><strong>Builder & Mentor</strong><small>Digital products and peer learning</small></div><div><span>04</span><strong>Research Focus</strong><small>Power reliability and demand response</small></div></section>
+    <!-- PROFILE STRIP -->
+    <section class="profile-strip" aria-label="Quick highlights">
+      <div>
+        <span>01</span>
+        <strong>First Class Engineer</strong>
+        <small>CGPA 3.88 / 4.00 - UENR</small>
+      </div>
+      <div>
+        <span>02</span>
+        <strong>Industrial Controls</strong>
+        <small>Thermal power generation - Sunon Asogli</small>
+      </div>
+      <div>
+        <span>03</span>
+        <strong>Builder and Mentor</strong>
+        <small>5 digital products - 50+ students</small>
+      </div>
+      <div>
+        <span>04</span>
+        <strong>Research Focus</strong>
+        <small>Power reliability and demand response</small>
+      </div>
+    </section>
 
+    <!-- ABOUT -->
     <section class="section intro-section" id="about">
       <div class="section-heading">
         <p class="eyebrow">01 / About</p>
-        <h2>An engineer who likes to understand how systems work, then improve them.</h2>
+        <h2>An engineer who understands systems, then improves them.</h2>
       </div>
       <div class="two-column">
         <div>
           <p>
-            My engineering background is rooted in electrical power, control and instrumentation. Through university projects, industrial attachment and national service, I have worked across both academic and plant environments.
+            My engineering background is rooted in electrical power, control and instrumentation. Through university projects, two industrial attachments and national service at a thermal power plant, I have worked across both academic and real plant environments.
           </p>
           <p>
-            I also build digital products. Some are education platforms for students, while others solve practical business or career problems. These projects have strengthened my ability to move from an idea to a working system, test it, deploy it and improve it.
+            At Sunon Asogli Power, I work in the Instrumentation and Controls Maintenance Department, gaining hands-on experience with gas turbines, HRSGs, process transmitters, sensors, CCTV systems, and industrial automation including PLC, SCADA and DCS training.
+          </p>
+          <p>
+            I also build digital products, from student learning platforms to career tools and e-commerce. These projects strengthen my ability to move from an idea to a working system, deploy it, and improve it over time.
           </p>
         </div>
         <div class="detail-grid">
           <div>
             <span class="detail-title">Education</span>
-            <strong>BSc Electrical & Electronic Engineering</strong>
-            <small>University of Energy and Natural Resources</small>
+            <strong>BSc Electrical and Electronic Engineering</strong>
+            <small>University of Energy and Natural Resources, Sunyani</small>
           </div>
           <div>
-            <span class="detail-title">Academic standing</span>
-            <strong>First Class</strong>
+            <span class="detail-title">Academic Standing</span>
+            <strong>First Class Honour</strong>
             <small>CGPA 3.88 / 4.00</small>
           </div>
           <div>
-            <span class="detail-title">Core areas</span>
+            <span class="detail-title">Core Areas</span>
             <strong>Power · Controls · Instrumentation</strong>
-            <small>Systems · Research · Digital solutions</small>
+            <small>Research · Digital solutions · Mentoring</small>
           </div>
           <div>
             <span class="detail-title">Location</span>
-            <strong>Ghana</strong>
-            <small>Open to graduate study and engineering opportunities</small>
+            <strong>Tema, Ghana</strong>
+            <small>Open to graduate study and engineering roles</small>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section journey-section" id="journey"><div class="section-heading"><p class="eyebrow">02 / The Journey</p><h2>From science student to an engineer building across power, controls and technology.</h2><p class="section-intro">My path has moved through science education, electrical engineering, teaching, leadership, industrial exposure, research and software development.</p></div><div class="journey-grid"><article><span>2018 - 2020</span><h3>Science & leadership</h3><p>National Science and Maths Quiz participation, Science & Maths Club leadership and early academic community work.</p></article><article><span>2021 - 2022</span><h3>Engineering begins</h3><p>Started electrical engineering at UENR while continuing academic and community activities.</p></article><article><span>2022 - 2024</span><h3>Teaching & building</h3><p>Teaching experience in Digital Logic Design, Measurement and Instrumentation, Basic Electronics and MATLAB, alongside peer tutoring and technical projects.</p></article><article><span>2024 - 2025</span><h3>Leadership & industry</h3><p>Led the GhIE UENR Students Chapter, served in university leadership and gained field experience with ECG.</p></article><article><span>2025 - Present</span><h3>Power plant experience</h3><p>Working in Controls and Instrumentation at Sunon Asogli Power, with exposure to thermal generation and maintenance.</p></article><article><span>2026</span><h3>Research & digital products</h3><p>Developing research in generation adequacy and fuel security while continuing to build useful web platforms.</p></article></div></section>
-
-    <section class="section dark-section" id="experience">
+    <!-- JOURNEY -->
+    <section class="section journey-section" id="journey">
       <div class="section-heading">
-        <p class="eyebrow light">02 / Experience</p>
+        <p class="eyebrow">02 / The Journey</p>
+        <h2>From science student to engineer building across power, controls and technology.</h2>
+        <p class="section-intro">My path has moved through science education, engineering, teaching, leadership, industrial exposure, research and software development.</p>
+      </div>
+      <div class="journey-grid">
+        <article>
+          <span>2018 - 2020</span>
+          <h3>Science and Leadership</h3>
+          <p>National Science and Maths Quiz participation, Science and Maths Club leadership and early academic community work at SDASS.</p>
+        </article>
+        <article>
+          <span>2021 - 2022</span>
+          <h3>Engineering Begins</h3>
+          <p>Started Electrical Engineering at UENR. First industrial attachment at ECG covering transformer fault detection, cable fixing and lines monitoring.</p>
+        </article>
+        <article>
+          <span>2022 - 2024</span>
+          <h3>Teaching and Building</h3>
+          <p>Teaching Assistant at UENR for Digital Logic Design, Measurement and Instrumentation, Basic Electronics and MATLAB. Founded GERAMA and ALEKS Engineering Tutorials.</p>
+        </article>
+        <article>
+          <span>2024 - 2025</span>
+          <h3>Leadership and Industry</h3>
+          <p>Led GhIE UENR Students Chapter as President. School of Engineering Board Member. Second industrial attachment at ECG Ashanti South covering fault patrols, feeder data and metering.</p>
+        </article>
+        <article>
+          <span>Nov 2025 - Present</span>
+          <h3>Power Plant Experience</h3>
+          <p>Instrumentation and Controls Graduate Engineer at Sunon Asogli Power. Exposure to gas turbines, HRSGs, process instruments, CCTV, PLC, SCADA and DCS.</p>
+        </article>
+        <article>
+          <span>2026</span>
+          <h3>Research and Digital Products</h3>
+          <p>Developing research in generation adequacy, fuel security and load forecasting using machine learning while building and deploying useful web platforms.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="dark-section" id="experience">
+      <div class="section-heading">
+        <p class="eyebrow gold">03 / Experience</p>
         <h2>Engineering experience shaped by real systems.</h2>
       </div>
 
@@ -114,69 +267,113 @@
         <article class="timeline-item">
           <div class="timeline-date">Nov 2025 - Present</div>
           <div class="timeline-content">
-            <p class="role">National Service, Controls & Instrumentation</p>
-            <h3>Sunon Asogli Power (Gh) Ltd, Tema Kpone</h3>
+            <p class="role">Instrumentation and Controls Graduate Engineer - Maintenance Department</p>
+            <h3>Sunon Asogli Power (Ghana) Ltd, Tema Kpone</h3>
             <p>
-              Working within the Maintenance Department with exposure to instrumentation, control systems and plant maintenance activities. My training has included general safety, firefighting, fibre optic fusion splicing and practical work during Unit 5 Class A Maintenance.
+              Working within the Maintenance Department with hands-on exposure to thermal power generation, instrumentation, industrial control systems and plant maintenance. Training has covered general safety, firefighting, fibre optic fusion splicing and a full Unit 5 Class A Maintenance exercise.
             </p>
             <ul>
-              <li>Worked around gas turbine instrumentation terminal boxes and terminal strips.</li>
-              <li>Observed and supported cable sealing, shielded wiring and local thermal control work.</li>
-              <li>Developed practical understanding of plant instrumentation and maintenance workflows.</li>
+              <li>Exposure to Gas Turbines, Steam Turbines, HRSGs and auxiliary systems.</li>
+              <li>Ethernet cable termination and industrial control systems knowledge.</li>
+              <li>Installation and maintenance of process transmitters, gauges, sensors, turbidimeters, conductivity meters, pH meters and related instruments.</li>
+              <li>CCTV installation and maintenance for industrial settings.</li>
+              <li>Unit 5 Class A Maintenance - thermocouple and vibration sensor installation and wiring.</li>
+              <li>Daniel Ultrasonic Interface software for natural gas diagnostics and flow meter validation.</li>
+              <li>Weekly data compilation of natural gas composition, energy, mass and calibration on Emerson Controller Unit.</li>
+              <li>Currently training on PLC (Simatic Manager), SCADA and DCS for industrial automation.</li>
             </ul>
           </div>
         </article>
 
         <article class="timeline-item">
-          <div class="timeline-date">2025</div>
+          <div class="timeline-date">Oct 2024 - Jan 2025</div>
           <div class="timeline-content">
-            <p class="role">Industrial Attachment</p>
-            <h3>Electricity Company of Ghana, Ashanti South Business Unit</h3>
+            <p class="role">Electrical Engineering Intern - Technical and Metering Unit</p>
+            <h3>Electricity Company of Ghana, Ashanti South District, Bekwai</h3>
             <p>
-              Gained field experience in distribution operations, fault and maintenance reporting, metering related disconnection work and substation equipment.
+              Field experience in distribution operations, fault patrol, maintenance reporting, metering disconnection work and substation equipment.
             </p>
             <ul>
-              <li>Prepared daily fault and maintenance reports using Excel.</li>
-              <li>Participated in field disconnection activities using approved tools and the ZEUS workflow.</li>
-              <li>Observed feeder, transformer, earthing, fuse, breaker and arrester related maintenance activities.</li>
+              <li>Worked with Fault and Maintenance Team for patrols on lines and feeders.</li>
+              <li>Load monitoring, fault detection and maintenance activities.</li>
+              <li>Daily report compilation in Excel and feeder data analysis in Control Operations Room.</li>
+              <li>Assisted teams with general mass meter disconnections using the ZEUS workflow.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">Oct - Dec 2022</div>
+          <div class="timeline-content">
+            <p class="role">Electrical Engineering Intern - Lines and Cable Team</p>
+            <h3>Electricity Company of Ghana, Ashanti South District, Bekwai</h3>
+            <p>
+              First industrial attachment focused on lines, cable and maintenance work across the distribution network.
+            </p>
+            <ul>
+              <li>Assisted Lines and Cable team on transformer line fault detection and cable fixing.</li>
+              <li>Township lines load monitoring, problem detection on major lines and fault resolution.</li>
+              <li>Daily report compilation and feeder data analysis in Control Operations Room.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">Jan - Dec 2023</div>
+          <div class="timeline-content">
+            <p class="role">Teaching Assistant - Dr. Joseph Owusu</p>
+            <h3>University of Energy and Natural Resources</h3>
+            <p>
+              Supported teaching across four engineering courses, providing lab assistance, tutorials and student support throughout the year.
+            </p>
+            <ul>
+              <li>Courses: Digital Logic Design, Measurement and Instrumentation, Basic Electronics, MATLAB.</li>
             </ul>
           </div>
         </article>
       </div>
     </section>
 
+    <!-- ENGINEERING PROJECTS -->
     <section class="section" id="projects">
       <div class="section-heading">
-        <p class="eyebrow">03 / Engineering Projects</p>
+        <p class="eyebrow">04 / Engineering Projects</p>
         <h2>Selected work from university and industry.</h2>
         <p class="section-intro">Projects are presented for their engineering problem, approach and practical value.</p>
       </div>
 
-      <div class="project-grid">
+      <div class="project-grid" id="projectGrid">
         <article class="project-card featured">
-          <div class="project-number">01</div>
-          <p class="project-type">Final Year Project · Smart Grid</p>
-          <h3>Smart Grid Enabled Household Level Load Shedding for Ghana’s Demand Response Program Optimization</h3>
+          <div class="project-number">01 · Featured</div>
+          <p class="project-type">Final Year Project · Smart Grid · Thesis</p>
+          <h3>Smart Grid Enabled Household Level Load Shedding for Ghana's Demand Response Program Optimization</h3>
           <p>
-            A demand response focused project that explores how household level load control can make scheduled load shedding more targeted and systematic. The concept uses load priority, household demand information and smart grid principles to support more informed control of non critical loads.
+            Designed and developed a smart grid based household demand response system that intelligently prioritises electrical loads under supply constraints. The system enables selective shedding of non-critical loads while maintaining essential services and provides controlled load restoration following power recovery.
           </p>
           <div class="tags">
-            <span>Smart Grid</span><span>Demand Response</span><span>Load Management</span><span>Power Systems</span>
+            <span>Smart Grid</span>
+            <span>Demand Response</span>
+            <span>Load Management</span>
+            <span>Power Systems</span>
+            <span>Ghana</span>
           </div>
-          <button class="text-button" data-project="demand">Read project overview <span>→</span></button>
+          <button class="text-button" data-project="demand">Read project overview &rarr;</button>
         </article>
 
         <article class="project-card">
           <div class="project-number">02</div>
           <p class="project-type">Industrial Systems Concept</p>
-          <h3>Plant CCTV Infrastructure Mapping & Troubleshooting System</h3>
+          <h3>Plant CCTV Infrastructure Mapping and Troubleshooting System</h3>
           <p>
-            A structured concept for mapping a large plant CCTV network across cameras, cabinets, IP addresses, fibre routes, control room equipment and monitoring locations to make fault tracing and maintenance easier.
+            A structured concept for mapping a large plant CCTV network across cameras, cabinets, IP addresses, fibre routes, control room equipment and monitoring locations to make fault tracing and maintenance faster.
           </p>
           <div class="tags">
-            <span>CCTV</span><span>IP Networks</span><span>Fibre</span><span>Asset Mapping</span>
+            <span>CCTV</span>
+            <span>IP Networks</span>
+            <span>Fibre Optic</span>
+            <span>Asset Mapping</span>
           </div>
-          <button class="text-button" data-project="cctv">Read project overview <span>→</span></button>
+          <button class="text-button" data-project="cctv">Read project overview &rarr;</button>
         </article>
 
         <article class="project-card">
@@ -184,37 +381,87 @@
           <p class="project-type">Industrial Controls Concept</p>
           <h3>Mobile Solar Camera Power Changeover</h3>
           <p>
-            A practical control concept for mobile solar camera units using a manual changeover arrangement between the solar supply path and a backup DC source.
+            A practical relay-based DC changeover control concept for mobile solar camera units, switching between a solar primary supply and a backup DC source. Modelled using Simurelay.
           </p>
           <div class="tags">
-            <span>DC Control</span><span>Solar</span><span>Relay Logic</span><span>Simurelay</span>
+            <span>DC Control</span>
+            <span>Solar</span>
+            <span>Relay Logic</span>
+            <span>Simurelay</span>
           </div>
-          <button class="text-button" data-project="solar">Read project overview <span>→</span></button>
+          <button class="text-button" data-project="solar">Read project overview &rarr;</button>
         </article>
-        <article class="project-card"><div class="project-number">04</div><p class="project-type">Engineering Research · 2026</p><h3>Load Forecasting in Electrical Engineering Using Machine Learning Technique</h3><p>A developing research project examining machine learning for electrical load forecasting and better power system planning.</p><div class="tags"><span>Load Forecasting</span><span>Machine Learning</span><span>Python</span><span>Power Systems</span></div><button class="text-button" data-project="forecast">Read project overview <span>→</span></button></article><article class="project-card"><div class="project-number">05</div><p class="project-type">Technical Design</p><h3>Industrial Sound Absorbing System</h3><p>An engineering design and prototype project exploring a practical approach to reducing unwanted industrial sound.</p><div class="tags"><span>AutoCAD</span><span>Prototype</span><span>Engineering Design</span></div><button class="text-button" data-project="sound">Read project overview <span>→</span></button></article><article class="project-card"><div class="project-number">06</div><p class="project-type">Embedded Systems</p><h3>Arduino & Embedded Systems Work</h3><p>Practical exposure to Arduino and embedded system programming through technical bootcamp and engineering project work.</p><div class="tags"><span>Arduino</span><span>C++</span><span>Embedded Systems</span></div></article>
+
+        <article class="project-card">
+          <div class="project-number">04</div>
+          <p class="project-type">Engineering Research · 2026</p>
+          <h3>Load Forecasting in Electrical Engineering Using Machine Learning</h3>
+          <p>
+            A developing research project examining how machine learning techniques applied to historical load data can support better power system planning, demand prediction and operational decisions.
+          </p>
+          <div class="tags">
+            <span>Load Forecasting</span>
+            <span>Machine Learning</span>
+            <span>Python</span>
+            <span>Power Systems</span>
+          </div>
+          <button class="text-button" data-project="forecast">Read project overview &rarr;</button>
+        </article>
+
+        <article class="project-card">
+          <div class="project-number">05</div>
+          <p class="project-type">Technical Design · Apr 2022</p>
+          <h3>Industrial Sound Absorbing System</h3>
+          <p>
+            An engineering design and prototype project exploring a practical approach to reducing unwanted industrial sound using AutoCAD design and prototype fabrication.
+          </p>
+          <div class="tags">
+            <span>AutoCAD</span>
+            <span>Prototype</span>
+            <span>Engineering Design</span>
+            <span>Acoustics</span>
+          </div>
+          <button class="text-button" data-project="sound">Read project overview &rarr;</button>
+        </article>
+
+        <article class="project-card">
+          <div class="project-number">06</div>
+          <p class="project-type">Embedded Systems · Feb 2023</p>
+          <h3>Arduino and Embedded Systems Work</h3>
+          <p>
+            Practical Arduino and embedded system programming through a 5-day bootcamp and engineering project work, covering sensors, actuators, C++ programming and system integration.
+          </p>
+          <div class="tags">
+            <span>Arduino</span>
+            <span>C++</span>
+            <span>Embedded Systems</span>
+            <span>Sensors</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="section web-section" id="web-work">
+    <!-- DIGITAL WORK -->
+    <section class="web-section" id="web-work">
       <div class="section-heading">
-        <p class="eyebrow">04 / Digital Work</p>
+        <p class="eyebrow gold">05 / Digital Work</p>
         <h2>Web products I have designed, built and deployed.</h2>
         <p class="section-intro">
-          These projects show another side of my work: turning practical needs into usable digital platforms.
+          These projects show another side of my work, turning practical needs into usable digital platforms.
         </p>
       </div>
 
-      <div class="web-grid">
+      <div class="web-grid" id="webGrid">
         <article class="web-card">
           <div class="web-index">01</div>
           <p class="project-type">Education Platform</p>
           <h3>GERAMA Academic Resources Centre</h3>
           <p>
-            A student focused academic platform for UENR engineering students. It brings together lecture materials, textbooks, past questions, video tutorials, quizzes, live classes, peer support and opportunity listings in one place.
+            A student-focused academic platform for UENR engineering students. Brings together lecture materials, textbooks, past questions, video tutorials, quizzes, live classes, peer support and opportunity listings.
           </p>
           <div class="web-footer">
             <span>Student learning platform</span>
-            <a href="https://gerama-portal.vercel.app/index.html" target="_blank" rel="noopener">Visit live site ↗</a>
+            <a href="https://gerama-portal.vercel.app/index.html" target="_blank" rel="noopener">Visit live site &nearr;</a>
           </div>
         </article>
 
@@ -223,11 +470,11 @@
           <p class="project-type">Career Tool</p>
           <h3>CV Genius Ghana</h3>
           <p>
-            A CV platform designed for Ghanaian students, graduates and professionals. It supports CV refinement, CV creation, guidance, samples, graduate study preparation and expert review workflows.
+            A CV platform designed for Ghanaian students, graduates and professionals. Supports CV refinement, creation, guidance, samples, graduate study preparation and expert review workflows.
           </p>
           <div class="web-footer">
             <span>CV and career platform</span>
-            <a href="https://cv-genius-ghana.web.app/" target="_blank" rel="noopener">Visit live site ↗</a>
+            <a href="https://cv-genius-ghana.web.app/" target="_blank" rel="noopener">Visit live site &nearr;</a>
           </div>
         </article>
 
@@ -236,24 +483,24 @@
           <p class="project-type">Marketplace</p>
           <h3>SSM Campus Marketplace</h3>
           <p>
-            A campus marketplace concept built to give students a digital place to discover and exchange products and services within a university community.
+            A campus marketplace concept giving students a digital place to discover and exchange products and services within a university community.
           </p>
           <div class="web-footer">
             <span>Campus commerce platform</span>
-            <a href="https://ssm-market-bdcf6.firebaseapp.com/" target="_blank" rel="noopener">Visit live site ↗</a>
+            <a href="https://ssm-market-bdcf6.firebaseapp.com/" target="_blank" rel="noopener">Visit live site &nearr;</a>
           </div>
         </article>
 
         <article class="web-card">
           <div class="web-index">04</div>
-          <p class="project-type">E commerce</p>
+          <p class="project-type">E-Commerce</p>
           <h3>YHEOLUX Signature</h3>
           <p>
-            An African inspired fashion storefront for bags, clutches and accessories, with product browsing, accounts, cart and order workflows, pickup locations and an administrative catalogue area.
+            An African-inspired fashion storefront for bags, clutches and accessories with product browsing, accounts, cart and order workflows, pickup locations and an admin catalogue area.
           </p>
           <div class="web-footer">
-            <span>Online store</span>
-            <a href="https://yheolux-store.web.app/" target="_blank" rel="noopener">Visit live site ↗</a>
+            <span>Online fashion store</span>
+            <a href="https://yheolux-store.web.app/" target="_blank" rel="noopener">Visit live site &nearr;</a>
           </div>
         </article>
 
@@ -262,49 +509,158 @@
           <p class="project-type">Career Preparation</p>
           <h3>NS Interview Prep</h3>
           <p>
-            A national service interview preparation platform for Ghanaian engineering and science graduates. It includes mock interview sessions, feedback, practice questions, aptitude tests, company targeting and interview progress tracking.
+            A national service interview preparation platform for Ghanaian engineering and science graduates, with mock sessions, feedback, practice questions, aptitude tests and progress tracking.
           </p>
           <div class="web-footer">
             <span>Interview preparation platform</span>
-            <a href="https://smart-prep-omega.vercel.app/" target="_blank" rel="noopener">Visit live site ↗</a>
+            <a href="https://smart-prep-omega.vercel.app/" target="_blank" rel="noopener">Visit live site &nearr;</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section light-panel" id="leadership">
+    <!-- SPEAKING -->
+    <section class="section talks-section" id="talks">
       <div class="section-heading">
-        <p class="eyebrow">08 / Leadership</p>
+        <p class="eyebrow">06 / Speaking and Community</p>
+        <h2>Sharing what I learn is part of the work.</h2>
+        <p class="section-intro">Invited speaker at student webinars and professional events on engineering, career preparation, leadership, robotics and professional growth.</p>
+      </div>
+
+      <div class="talk-list">
+        <article>
+          <span>Aug 2026</span>
+          <div>
+            <h3>Igniting Purpose, Discipline, and Professional Excellence in WAIMM</h3>
+            <p>WAIMM UENR Chapter, End of 2025/2026 Administrative Year. Virtual.</p>
+          </div>
+        </article>
+        <article>
+          <span>Jul 2026</span>
+          <div>
+            <h3>Beyond the Classroom: How to Prepare, Perform and Excel in NSS Aptitude Tests</h3>
+            <p>WAIMM, Career preparation webinar for final year students. Virtual.</p>
+          </div>
+        </article>
+        <article>
+          <span>Mar 2026</span>
+          <div>
+            <h3>Beyond the Engineering Class: What's Next</h3>
+            <p>Ghana Institution of Engineering, GhIE UENR Students Chapter. Virtual.</p>
+          </div>
+        </article>
+        <article>
+          <span>Mar 2026</span>
+          <div>
+            <h3>Transforming Robotics Innovations into Industry Solutions in Ghana</h3>
+            <p>UENR Robotics Club. In-Person.</p>
+          </div>
+        </article>
+        <article>
+          <span>Feb 2026</span>
+          <div>
+            <h3>Stay on Track: Balancing Academics and Extracurricular Activities</h3>
+            <p>WAIMM Student Webinar. Virtual.</p>
+          </div>
+        </article>
+        <article>
+          <span>Jun 2024</span>
+          <div>
+            <h3>The Effect of Substance Abuse Within the University Fraternity</h3>
+            <p>Guest speaker, UPC-UENR online seminar. In-Person.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section class="light-panel" id="leadership">
+      <div class="section-heading">
+        <p class="eyebrow gold">07 / Leadership</p>
         <h2>Leadership built around people, engineering and service.</h2>
       </div>
 
       <div class="leadership-grid">
         <article>
-          <span class="lead-year">2024 / 2025</span>
-          <h3>President, GhIE UENR Students’ Chapter</h3>
+          <span class="lead-year">Sep 2024 - Sep 2025</span>
+          <h3>President, GhIE UENR Students' Chapter</h3>
           <p>
-            Led the student chapter of the Ghana Institution of Engineering at UENR, coordinating engineering students across multiple programmes and supporting activities that connected students, academia and industry.
+            Led the Ghana Institution of Engineering student chapter at UENR, coordinating students across multiple programmes and connecting them with academia and industry. Also served as Chairperson of the GhIE UENR Executive Council.
           </p>
         </article>
         <article>
-          <span class="lead-year">WAIMM UENR</span>
-          <h3>Vice President</h3>
+          <span class="lead-year">Sep 2024 - Sep 2025</span>
+          <h3>Vice President, WAIMM UENR Chapter</h3>
           <p>
-            Supported the West African Institute of Mining, Metallurgy and Petroleum UENR Chapter and its student activities, with a focus on professional development and student engagement.
+            Supported the West African Institute of Mining, Metallurgy and Petroleum UENR Chapter with a focus on professional development, student engagement and the annual WAIMM Students Conference.
           </p>
         </article>
         <article>
-          <span class="lead-year">Team GERAMA</span>
-          <h3>Founder & Academic Lead</h3>
+          <span class="lead-year">Jun 2022 - Present</span>
+          <h3>Co-Founder and Mentorship Lead, GERAMA UENR</h3>
           <p>
-            Built Team GERAMA around a simple idea: students can improve faster when knowledge is shared. The initiative supports academic collaboration, mentoring and peer learning.
+            Built Team GERAMA around peer-to-peer learning and mentorship for engineering students. Developed a fully functional website for live virtual classes and resource sharing.
+          </p>
+        </article>
+        <article>
+          <span class="lead-year">Jan 2025 - Sep 2025</span>
+          <h3>School of Engineering Board Member, UENR</h3>
+          <p>
+            Served on the School of Engineering Board, Project Fund Committee and Awards and Dinner Board, representing student interests at faculty governance level.
+          </p>
+        </article>
+        <article>
+          <span class="lead-year">Feb 2024 - Sep 2025</span>
+          <h3>Team Lead, ALEKS Engineering Tutorials</h3>
+          <p>
+            Organised academic tutorials for all engineering students within the School of Engineering and Energy, receiving a commendation from the Vice Chancellor, Prof. Elvis Asare Bediako.
+          </p>
+        </article>
+        <article>
+          <span class="lead-year">Sep 2024 - Sep 2025</span>
+          <h3>General Secretary, UENR Robotics Club</h3>
+          <p>
+            Supported the Robotics Club's activities including the one-week Skills Development Bootcamp covering website development and engineering innovation workshops.
           </p>
         </article>
       </div>
     </section>
 
-    <section class="section talks-section" id="talks"><div class="section-heading"><p class="eyebrow">06 / Speaking & Community</p><h2>Sharing what I learn is part of the work.</h2><p class="section-intro">I have spoken at student webinars and professional events on engineering, career preparation, leadership, robotics and professional growth.</p></div><div class="talk-list"><article><span>Aug 2026</span><div><h3>Igniting Purpose, Discipline, and Professional Excellence in WAIMM</h3><p>WAIMM UENR Chapter event.</p></div></article><article><span>Jul 2026</span><div><h3>Beyond the Classroom: How to Prepare, Perform & Excel in NSS Aptitude Tests</h3><p>Career preparation webinar for final year students.</p></div></article><article><span>Mar 2026</span><div><h3>Beyond the Engineering Class: What’s Next</h3><p>GhIE UENR Students Chapter session.</p></div></article><article><span>Mar 2026</span><div><h3>Transforming Robotics Innovations into Industry Solutions in Ghana</h3><p>UENR Robotics Club session.</p></div></article><article><span>Feb 2026</span><div><h3>Stay on Track: Balancing Academics and Extracurricular Activities</h3><p>WAIMM student webinar.</p></div></article></div></section>
+    <!-- MILESTONES -->
+    <section class="section achievement-section">
+      <div class="section-heading">
+        <p class="eyebrow">08 / Milestones</p>
+        <h2>Highlights that have shaped this portfolio.</h2>
+      </div>
+      <div class="milestone-grid">
+        <div>
+          <strong>First Class</strong>
+          <span>CGPA 3.88 / 4.00 - BSc Electrical and Electronic Engineering</span>
+        </div>
+        <div>
+          <strong>Best Graduate</strong>
+          <span>Best Graduating Student, Dept. of Computer and Electrical Engineering, Dec 2025</span>
+        </div>
+        <div>
+          <strong>50+</strong>
+          <span>Students and graduates directly mentored through GERAMA and tutorials</span>
+        </div>
+        <div>
+          <strong>5</strong>
+          <span>Live web products designed, built and deployed</span>
+        </div>
+        <div>
+          <strong>6+</strong>
+          <span>Invited speaking engagements at student and professional events</span>
+        </div>
+        <div>
+          <strong>10+</strong>
+          <span>University leadership roles across engineering, peer counselling and student bodies</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- RESEARCH -->
     <section class="section" id="research">
       <div class="section-heading">
         <p class="eyebrow">09 / Research</p>
@@ -314,30 +670,39 @@
       <div class="research-layout">
         <div class="research-main">
           <article class="research-card">
-            <p class="project-type">Primary research direction</p>
-            <h3>Generation Adequacy & Fuel Security in Ghana’s Hydro Thermal System</h3>
+            <p class="project-type">Primary Research Direction</p>
+            <h3>Generation Adequacy and Fuel Security in Ghana's Hydro-Thermal System</h3>
             <p>
-              My research interest is in understanding how generation adequacy, fuel availability and the hydro thermal generation mix affect reliability and power system security in Ghana. I am interested in practical analysis that can support better planning and operational decisions.
+              My primary research interest is in understanding how generation adequacy, fuel availability and the hydro-thermal generation mix affect reliability and power system security in Ghana. I am interested in practical, data-driven analysis that can support better planning and operational decisions for Ghana's electricity sector.
             </p>
           </article>
           <article class="research-card">
-            <p class="project-type">Additional direction</p>
-            <h3>Instrumentation and Control Failures in Ghana’s Thermal Power Plants</h3>
+            <p class="project-type">Additional Direction</p>
+            <h3>Instrumentation and Control Failures in Ghana's Thermal Power Plants</h3>
             <p>
-              A field oriented research direction focused on failure modes, causes and maintenance practices in thermal plant instrumentation and control systems.
+              A field-oriented research direction focused on failure modes, root causes and maintenance practices in thermal plant instrumentation and control systems, informed by practical experience at Sunon Asogli Power.
+            </p>
+          </article>
+          <article class="research-card">
+            <p class="project-type">Active Research · 2026</p>
+            <h3>Load Forecasting Using Machine Learning Techniques</h3>
+            <p>
+              An active research project exploring how machine learning applied to historical electrical load data can improve forecasting accuracy for grid planning and demand management.
             </p>
           </article>
         </div>
 
         <aside class="research-side">
-          <p class="side-label">Areas of interest</p>
+          <p class="side-label">Areas of Interest</p>
           <ul>
             <li>Power system operation</li>
             <li>Generation adequacy</li>
             <li>Fuel security</li>
             <li>Demand response</li>
             <li>Smart grids</li>
+            <li>Load forecasting</li>
             <li>Industrial instrumentation</li>
+            <li>PLC, SCADA, DCS</li>
             <li>Control systems</li>
             <li>Reliability and maintenance</li>
           </ul>
@@ -345,75 +710,99 @@
       </div>
     </section>
 
-    <section class="section achievement-section"><div class="section-heading"><p class="eyebrow">07 / Milestones</p><h2>Highlights that have shaped the portfolio.</h2></div><div class="milestone-grid"><div><strong>First Class</strong><span>FGPA 3.88 / 4.00</span></div><div><strong>Best Graduating Student</strong><span>Department of Computer and Electrical Engineering, 2025</span></div><div><strong>500+</strong><span>Students and graduates in the GERAMA community</span></div><div><strong>5</strong><span>Live web products developed and deployed</span></div><div><strong>4</strong><span>Core teaching subjects</span></div><div><strong>Multiple</strong><span>Engineering, leadership and industrial experiences</span></div></div></section>
-
-    <section class="section dark-section skills-section">
-      <div class="section-heading">
-        <p class="eyebrow light">10 / Capabilities</p>
-        <h2>A practical mix of engineering and digital skills.</h2>
-      </div>
-      <div class="skills-grid">
-        <div>
-          <span>01</span>
-          <h3>Power & Energy</h3>
-          <p>Power generation, power systems, demand response, load management and generation reliability.</p>
+    <!-- SKILLS -->
+    <section class="skills-section-wrap">
+      <div class="section skills-section">
+        <div class="section-heading">
+          <p class="eyebrow gold">10 / Capabilities</p>
+          <h2>A practical mix of engineering and digital skills.</h2>
         </div>
-        <div>
-          <span>02</span>
-          <h3>Controls & Instrumentation</h3>
-          <p>Industrial instrumentation, sensors, control panels, PLC concepts, signal wiring and maintenance practice.</p>
-        </div>
-        <div>
-          <span>03</span>
-          <h3>Digital Development</h3>
-          <p>Responsive web interfaces, JavaScript based applications, Firebase deployment and practical product development.</p>
-        </div>
-        <div>
-          <span>04</span>
-          <h3>Research & Technical Work</h3>
-          <p>Technical literature review, engineering documentation, system analysis and project presentation.</p>
+        <div class="skills-grid" id="skillsGrid">
+          <div>
+            <span>01</span>
+            <h3>Power and Energy</h3>
+            <p>Power generation, power systems, demand response, load management, generation reliability and thermal plant operations.</p>
+          </div>
+          <div>
+            <span>02</span>
+            <h3>Controls and Instrumentation</h3>
+            <p>Industrial instrumentation, sensors, process transmitters, PLC (Simatic Manager, CodeSys), SCADA, DCS, relay logic and maintenance practice.</p>
+          </div>
+          <div>
+            <span>03</span>
+            <h3>Digital Development</h3>
+            <p>HTML, CSS, JavaScript, Python, MATLAB, C++, Firebase, Vercel, responsive web design, UI/UX (Figma), PCB design (KiCAD), AutoCAD Electrical.</p>
+          </div>
+          <div>
+            <span>04</span>
+            <h3>Research and Technical Work</h3>
+            <p>Technical literature review, engineering documentation, system analysis, data compilation, project presentation and academic mentorship.</p>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="section contact-section" id="contact">
       <div class="contact-copy">
         <p class="eyebrow">11 / Contact</p>
-        <h2>Let’s connect around engineering, research or a useful project.</h2>
+        <h2>Let's connect around engineering, research or a useful project.</h2>
         <p>
-          For graduate study, engineering projects, collaboration or professional opportunities, you can reach me through the channels below.
+          For graduate study opportunities, engineering projects, collaboration or professional connections, you can reach me through the channels below.
         </p>
+        <a class="btn btn-gold" style="margin-top:28px;display:inline-flex;" href="cv/Alexander-Opoku-Dwumaah-CV.pdf" download>
+          Download my CV
+        </a>
       </div>
 
       <div class="contact-links">
-        <a class="contact-item" href="mailto:YOUR_EMAIL@example.com">
-          <span>Email</span>
-          <strong>YOUR_EMAIL@example.com</strong>
+        <a class="contact-item" href="mailto:alexandero.dwumaah@gmail.com">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <span>Email</span>
+            <strong>alexandero.dwumaah@gmail.com</strong>
+          </div>
         </a>
-        <a class="contact-item" href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">
-          <span>LinkedIn</span>
-          <strong>linkedin.com/in/YOUR-LINKEDIN/</strong>
+        <a class="contact-item" href="https://www.linkedin.com/in/alexander-opoku-dwumaah/" target="_blank" rel="noopener">
+          <div class="contact-icon">💼</div>
+          <div>
+            <span>LinkedIn</span>
+            <strong>linkedin.com/in/alexander-opoku-dwumaah</strong>
+          </div>
         </a>
-        <a class="contact-item" href="#web-work">
-          <span>Portfolio</span>
-          <strong>Selected digital work above</strong>
+        <a class="contact-item" href="tel:+233555749497">
+          <div class="contact-icon">📞</div>
+          <div>
+            <span>Phone</span>
+            <strong>+233 555 749 497</strong>
+          </div>
+        </a>
+        <a class="contact-item" href="cv/Alexander-Opoku-Dwumaah-CV.pdf" download>
+          <div class="contact-icon">📄</div>
+          <div>
+            <span>CV / Resume</span>
+            <strong>Download PDF</strong>
+          </div>
         </a>
       </div>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div>
       <strong>Alexander Opoku Dwumaah</strong>
-      <span>Electrical & Electronic Engineer</span>
+      <span>Electrical and Electronic Engineer - Ghana</span>
     </div>
-    <p>© <span id="year"></span> Alexander Opoku Dwumaah</p>
+    <p>&copy; <span id="year"></span> Alexander Opoku Dwumaah</p>
   </footer>
 
+  <!-- PROJECT MODAL -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" data-close-modal aria-label="Close project overview">×</button>
+      <button class="modal-close" data-close-modal aria-label="Close project overview">&times;</button>
       <p class="project-type" id="modalType"></p>
       <h2 id="modalTitle"></h2>
       <div id="modalBody"></div>
