@@ -12,6 +12,22 @@
 </head>
 <body>
 
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- CONFIRM MODAL -->
+  <div class="confirm-overlay" id="confirmOverlay" style="display:none;">
+    <div class="confirm-box">
+      <div class="confirm-icon" id="confirmIcon">⚠️</div>
+      <h3 id="confirmTitle">Are you sure?</h3>
+      <p id="confirmMsg">This action cannot be undone.</p>
+      <div class="confirm-actions">
+        <button class="btn-secondary" id="confirmCancel">Cancel</button>
+        <button class="btn-danger" id="confirmOk">Delete</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================================================
        LOGIN SCREEN
        ================================================ -->
@@ -23,12 +39,17 @@
       <form id="loginForm" autocomplete="off">
         <div class="field-group">
           <label for="adminPass">Password</label>
-          <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="current-password">
+          <div class="pass-wrap">
+            <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="current-password">
+            <button type="button" class="pass-toggle" id="passToggle" tabindex="-1">
+              <svg id="eyeIcon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 011.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0114.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 011.172 8z"/><path d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"/></svg>
+            </button>
+          </div>
         </div>
         <div class="login-error" id="loginError">Incorrect password. Try again.</div>
         <button type="submit" class="btn-primary full-width">Sign in</button>
       </form>
-      <a href="index.html" class="back-link">&larr; Back to portfolio</a>
+      <a href="index.html" class="back-link">&#8592; Back to portfolio</a>
     </div>
   </div>
 
@@ -36,6 +57,9 @@
        ADMIN SHELL
        ================================================ -->
   <div class="admin-shell" id="adminShell" style="display:none;">
+
+    <!-- SIDEBAR OVERLAY (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- SIDEBAR -->
     <aside class="admin-sidebar" id="adminSidebar">
@@ -48,34 +72,62 @@
       </div>
 
       <nav class="sidebar-nav">
+        <div class="nav-group-label">Dashboard</div>
         <button class="nav-item active" data-tab="overview">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg>
           Overview
         </button>
+
+        <div class="nav-group-label">Content</div>
         <button class="nav-item" data-tab="projects">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H3a1 1 0 01-1-1V9z"/></svg>
-          Engineering Projects
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.491.592l-1.5 8A.5.5 0 0113 12H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5z"/></svg>
+          Projects
+          <span class="nav-badge" id="badge-projects">0</span>
         </button>
         <button class="nav-item" data-tab="webwork">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M0 3.5A1.5 1.5 0 011.5 2h13A1.5 1.5 0 0116 3.5v9A1.5 1.5 0 0114.5 14h-13A1.5 1.5 0 010 12.5v-9zm1.5-.5a.5.5 0 00-.5.5V5h14V3.5a.5.5 0 00-.5-.5h-13z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M0 3.5A1.5 1.5 0 011.5 2h13A1.5 1.5 0 0116 3.5v2A1.5 1.5 0 0114.5 7H1.5A1.5 1.5 0 010 5.5v-2zm1.5-.5a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-13zM0 10.5A1.5 1.5 0 011.5 9h13a1.5 1.5 0 011.5 1.5v2a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 010 12.5v-2z"/></svg>
           Digital Work
+          <span class="nav-badge" id="badge-webwork">0</span>
         </button>
         <button class="nav-item" data-tab="skills">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"/><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M7 2a1 1 0 011-1h1a1 1 0 011 1v1a4 4 0 010 7.874V13a1 1 0 01-1 1H8a1 1 0 01-1-1v-2.126A4 4 0 017 3V2z"/></svg>
           Skills
+          <span class="nav-badge" id="badge-skills">0</span>
         </button>
+        <button class="nav-item" data-tab="speaking">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 008 15z"/></svg>
+          Speaking
+          <span class="nav-badge" id="badge-speaking">0</span>
+        </button>
+        <button class="nav-item" data-tab="milestones">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/><path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/></svg>
+          Milestones
+          <span class="nav-badge" id="badge-milestones">0</span>
+        </button>
+
+        <div class="nav-group-label">Files</div>
         <button class="nav-item" data-tab="cv">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 0a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4.5L9.5 0H4zm5.5 1.5L13 5H9.5V1.5zM4.5 8h7a.5.5 0 010 1h-7a.5.5 0 010-1zm0 2h4a.5.5 0 010 1h-4a.5.5 0 010-1z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0H4zm5.5 1.5L13 5H9.5V1.5zM4.5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1zm0 2h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z"/></svg>
           CV / Resume
+          <span class="cv-live-dot" id="cvLiveDot" style="display:none;"></span>
+        </button>
+
+        <div class="nav-group-label">System</div>
+        <button class="nav-item" data-tab="activity">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+          Activity Log
         </button>
         <button class="nav-item" data-tab="settings">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4.754a3.246 3.246 0 100 6.492 3.246 3.246 0 000-6.492zM5.754 8a2.246 2.246 0 114.492 0 2.246 2.246 0 01-4.492 0z"/><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 01-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 01-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 01.52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 011.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 011.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 01.52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 01-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 01-1.255-.52l-.094-.319z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/></svg>
           Settings
         </button>
       </nav>
 
       <div class="sidebar-footer">
-        <a href="index.html" target="_blank" class="view-site-btn">View portfolio &nearr;</a>
+        <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="view-site-btn">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/></svg>
+          View live site
+        </a>
         <button class="logout-btn" id="logoutBtn">Sign out</button>
       </div>
     </aside>
@@ -85,103 +137,150 @@
 
       <!-- TOPBAR -->
       <div class="admin-topbar">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle sidebar">
           <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 4h11a.5.5 0 000-1h-11a.5.5 0 000 1zm0 4h11a.5.5 0 000-1h-11a.5.5 0 000 1zm0 4h11a.5.5 0 000-1h-11a.5.5 0 000 1z"/></svg>
         </button>
-        <div class="topbar-title" id="topbarTitle">Overview</div>
-        <div class="topbar-actions">
-          <span class="save-indicator" id="saveIndicator"></span>
-          <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="btn-secondary">Live site &nearr;</a>
+        <div>
+          <div class="topbar-title" id="topbarTitle">Overview</div>
+          <div class="topbar-sub" id="topbarSub">Welcome back, Alexander</div>
         </div>
+        <div class="topbar-right">
+          <div class="autosave-badge" id="autosaveBadge">
+            <span class="autosave-dot"></span>
+            Auto-saved
+          </div>
+          <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="btn-secondary topbar-live-btn">
+            Live site &#8599;
+          </a>
+        </div>
+      </div>
+
+      <!-- DEPLOY BANNER -->
+      <div class="deploy-banner" id="deployBanner" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 1.146a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8.5 2.707V11.5a.5.5 0 01-1 0V2.707L5.354 4.854a.5.5 0 11-.708-.708l3-3z"/></svg>
+        <span>You have unsaved changes. Run <code>firebase deploy --only hosting</code> after updating your files to push live.</span>
+        <button class="deploy-dismiss" id="deployDismiss">Dismiss</button>
       </div>
 
       <!-- ================================================
            TAB: OVERVIEW
            ================================================ -->
       <section class="tab-panel active" id="tab-overview">
-        <div class="overview-grid">
+        <div class="overview-stats">
           <div class="stat-card blue">
-            <div class="stat-label">Engineering Projects</div>
+            <div class="stat-top">
+              <div class="stat-label">Projects</div>
+              <div class="stat-icon-box blue"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.491.592l-1.5 8A.5.5 0 0113 12H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5z"/></svg></div>
+            </div>
             <div class="stat-value" id="ov-projects">0</div>
-            <div class="stat-foot">in portfolio</div>
+            <div class="stat-foot">engineering projects</div>
           </div>
           <div class="stat-card gold">
-            <div class="stat-label">Digital Products</div>
+            <div class="stat-top">
+              <div class="stat-label">Digital Work</div>
+              <div class="stat-icon-box gold"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 3.5A1.5 1.5 0 011.5 2h13A1.5 1.5 0 0116 3.5v2A1.5 1.5 0 0114.5 7H1.5A1.5 1.5 0 010 5.5v-2zm1.5-.5a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-13z"/></svg></div>
+            </div>
             <div class="stat-value" id="ov-webwork">0</div>
             <div class="stat-foot">live platforms</div>
           </div>
           <div class="stat-card purple">
-            <div class="stat-label">Skill Categories</div>
+            <div class="stat-top">
+              <div class="stat-label">Skills</div>
+              <div class="stat-icon-box purple"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M7 2a1 1 0 011-1h1a1 1 0 011 1v1a4 4 0 010 7.874V13a1 1 0 01-1 1H8a1 1 0 01-1-1v-2.126A4 4 0 017 3V2z"/></svg></div>
+            </div>
             <div class="stat-value" id="ov-skills">0</div>
             <div class="stat-foot">capability areas</div>
           </div>
+          <div class="stat-card teal">
+            <div class="stat-top">
+              <div class="stat-label">Speaking</div>
+              <div class="stat-icon-box teal"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 008 15z"/></svg></div>
+            </div>
+            <div class="stat-value" id="ov-speaking">0</div>
+            <div class="stat-foot">talk entries</div>
+          </div>
           <div class="stat-card green">
-            <div class="stat-label">CV Status</div>
-            <div class="stat-value" id="ov-cv">-</div>
-            <div class="stat-foot" id="ov-cv-foot">not checked</div>
+            <div class="stat-top">
+              <div class="stat-label">Milestones</div>
+              <div class="stat-icon-box green"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 8a5.5 5.5 0 018.25-4.764.5.5 0 00.5-.866A6.5 6.5 0 1014.5 8a.5.5 0 00-1 0 5.5 5.5 0 11-11 0z"/><path d="M15.354 3.354a.5.5 0 00-.708-.708L8 9.293 5.354 6.646a.5.5 0 10-.708.708l3 3a.5.5 0 00.708 0l7-7z"/></svg></div>
+            </div>
+            <div class="stat-value" id="ov-milestones">0</div>
+            <div class="stat-foot">achievements</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-top">
+              <div class="stat-label">CV Status</div>
+              <div class="stat-icon-box red"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 0a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4.5L9.5 0H4zm5.5 1.5L13 5H9.5V1.5z"/></svg></div>
+            </div>
+            <div class="stat-value" id="ov-cv" style="font-size:20px;">Checking...</div>
+            <div class="stat-foot" id="ov-cv-foot">cv availability</div>
           </div>
         </div>
 
-        <div class="overview-quick">
-          <h2 class="section-label">Quick actions</h2>
-          <div class="quick-grid">
-            <button class="quick-card" onclick="switchTab('projects')">
-              <div class="quick-icon blue">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"/><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-              <div>
-                <strong>Add project</strong>
-                <span>Engineering or research project</span>
-              </div>
-            </button>
-            <button class="quick-card" onclick="switchTab('webwork')">
-              <div class="quick-icon gold">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"/><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-              <div>
-                <strong>Add digital product</strong>
-                <span>Web app or platform</span>
-              </div>
-            </button>
-            <button class="quick-card" onclick="switchTab('skills')">
-              <div class="quick-icon purple">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z"/><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-              <div>
-                <strong>Add skill</strong>
-                <span>New capability category</span>
-              </div>
-            </button>
-            <button class="quick-card" onclick="switchTab('cv')">
-              <div class="quick-icon green">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 1.146a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8.5 2.707V11.5a.5.5 0 01-1 0V2.707L5.354 4.854a.5.5 0 11-.708-.708l3-3z"/></svg>
-              </div>
-              <div>
-                <strong>Upload CV</strong>
-                <span>Update your downloadable CV</span>
-              </div>
-            </button>
+        <div class="ov-row">
+          <div class="quick-actions-card">
+            <h3>Quick actions</h3>
+            <div class="quick-grid">
+              <button class="quick-btn" onclick="switchTab('projects')">
+                <span class="qb-icon blue">+</span>
+                <span>Add project</span>
+              </button>
+              <button class="quick-btn" onclick="switchTab('webwork')">
+                <span class="qb-icon gold">+</span>
+                <span>Add digital product</span>
+              </button>
+              <button class="quick-btn" onclick="switchTab('skills')">
+                <span class="qb-icon purple">+</span>
+                <span>Add skill</span>
+              </button>
+              <button class="quick-btn" onclick="switchTab('speaking')">
+                <span class="qb-icon teal">+</span>
+                <span>Add talk</span>
+              </button>
+              <button class="quick-btn" onclick="switchTab('milestones')">
+                <span class="qb-icon green">+</span>
+                <span>Add milestone</span>
+              </button>
+              <button class="quick-btn" onclick="switchTab('cv')">
+                <span class="qb-icon red">&#8593;</span>
+                <span>Upload CV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="deploy-guide-card">
+            <h3>Deploy changes live</h3>
+            <p>After editing content here, update your source files and run this command in PowerShell from your portfolio folder:</p>
+            <div class="code-block">firebase deploy --only hosting</div>
+            <p style="margin-top:12px;">Your live site will update within seconds.</p>
+            <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="btn-primary" style="margin-top:14px;display:inline-flex;gap:6px;">
+              Open live site &#8599;
+            </a>
           </div>
         </div>
 
-        <div class="overview-info">
-          <h2 class="section-label">How this admin works</h2>
-          <div class="info-grid">
-            <div class="info-card">
-              <h4>Add and edit content</h4>
-              <p>Use the tabs on the left to add or edit projects, digital products and skills. Each section shows a form where you fill in the details.</p>
+        <div class="how-it-works">
+          <h3>How this admin works</h3>
+          <div class="how-grid">
+            <div class="how-card">
+              <div class="how-num">1</div>
+              <h4>Edit content here</h4>
+              <p>Use the tabs on the left to add, edit or delete projects, digital products, skills, talks and milestones.</p>
             </div>
-            <div class="info-card">
-              <h4>Copy and paste code</h4>
-              <p>After saving, each section generates ready-to-use code. Copy it and paste it into <code>index.html</code> or <code>script.js</code> in your portfolio folder.</p>
+            <div class="how-card">
+              <div class="how-num">2</div>
+              <h4>Copy generated code</h4>
+              <p>Each section generates ready-to-use HTML or JavaScript. Copy it and paste into <code>index.html</code> or <code>script.js</code>.</p>
             </div>
-            <div class="info-card">
+            <div class="how-card">
+              <div class="how-num">3</div>
               <h4>Upload your CV</h4>
-              <p>Go to the CV tab, pick your PDF file, and follow the steps to place it in the right folder so the Download CV buttons on your portfolio work.</p>
+              <p>Go to CV tab, follow the steps to place <code>Alexander-Opoku-Dwumaah-CV.pdf</code> in the <code>cv/</code> folder.</p>
             </div>
-            <div class="info-card">
-              <h4>Deploy changes live</h4>
-              <p>After updating files, open PowerShell in your portfolio folder and run: <code>firebase deploy --only hosting</code></p>
+            <div class="how-card">
+              <div class="how-num">4</div>
+              <h4>Deploy to Firebase</h4>
+              <p>Run <code>firebase deploy --only hosting</code> from your portfolio folder. Changes go live in seconds.</p>
             </div>
           </div>
         </div>
@@ -194,46 +293,44 @@
         <div class="panel-header">
           <div>
             <h2>Engineering Projects</h2>
-            <p>Add, edit or remove the project cards and their modal detail content.</p>
+            <p>Manage project cards and modal detail content shown on your portfolio.</p>
           </div>
           <button class="btn-primary" id="addProjectBtn">+ Add project</button>
         </div>
-
         <div class="item-list" id="projectList"></div>
-
         <div class="form-drawer" id="projectForm" style="display:none;">
-          <div class="form-drawer-header">
+          <div class="form-drawer-head">
             <h3 id="projectFormTitle">Add project</h3>
-            <button class="drawer-close" id="cancelProjectBtn2">&times;</button>
+            <button class="drawer-close" id="cancelProjectX">&times;</button>
           </div>
           <div class="form-grid">
             <div class="field-group">
-              <label>Project key <em>(no spaces, used in code)</em></label>
-              <input type="text" id="pKey" placeholder="e.g. newproject2026">
+              <label>Project key <em>no spaces, used in JS</em></label>
+              <input type="text" id="pKey" placeholder="e.g. gridproject2026">
             </div>
             <div class="field-group">
               <label>Display number</label>
               <input type="text" id="pNumber" placeholder="e.g. 07">
             </div>
             <div class="field-group span-2">
-              <label>Type / Category label</label>
+              <label>Type / Category</label>
               <input type="text" id="pType" placeholder="e.g. Engineering Research · 2026">
             </div>
             <div class="field-group span-2">
-              <label>Project title</label>
+              <label>Title</label>
               <input type="text" id="pTitle" placeholder="Full project title">
             </div>
             <div class="field-group span-2">
-              <label>Short description <em>(shown on the card)</em></label>
+              <label>Short description <em>shown on card</em></label>
               <textarea id="pDesc" rows="3" placeholder="Brief description visible on the portfolio page..."></textarea>
             </div>
             <div class="field-group span-2">
-              <label>Tags <em>(comma separated)</em></label>
+              <label>Tags <em>comma separated</em></label>
               <input type="text" id="pTags" placeholder="Smart Grid, Power Systems, Python">
             </div>
             <div class="field-group span-2">
-              <label>Full modal overview <em>(HTML supported)</em></label>
-              <textarea id="pBody" rows="8" placeholder="<p>Full project overview shown when the user clicks 'Read project overview'...</p>&#10;<ul><li>Key point one</li></ul>"></textarea>
+              <label>Full modal body <em>HTML supported</em></label>
+              <textarea id="pBody" rows="9" placeholder="<p>Full project overview shown in the popup modal...</p>&#10;<ul>&#10;  <li>Key point</li>&#10;</ul>"></textarea>
             </div>
             <div class="field-group">
               <label>Featured card?</label>
@@ -248,16 +345,15 @@
             <button class="btn-primary" id="saveProjectBtn">Save project</button>
           </div>
         </div>
-
         <div class="export-box" id="projectExport" style="display:none;">
-          <div class="export-header">
+          <div class="export-head">
             <div>
-              <h4>Generated code</h4>
-              <p>Copy this and paste it into the <code>projectData</code> object in <code>script.js</code></p>
+              <h4>Generated code for <code>script.js</code></h4>
+              <p>Paste this into the <code>projectData</code> object in your script.js file.</p>
             </div>
-            <button class="btn-secondary copy-btn" data-target="projectExportCode">Copy</button>
+            <button class="btn-copy" data-target="projectExportCode">Copy</button>
           </div>
-          <textarea id="projectExportCode" rows="16" readonly spellcheck="false"></textarea>
+          <textarea id="projectExportCode" rows="18" readonly spellcheck="false"></textarea>
         </div>
       </section>
 
@@ -268,22 +364,20 @@
         <div class="panel-header">
           <div>
             <h2>Digital Work</h2>
-            <p>Manage the web products and platforms shown in the Digital Work section.</p>
+            <p>Manage the web products shown in the Digital Work section.</p>
           </div>
           <button class="btn-primary" id="addWebBtn">+ Add product</button>
         </div>
-
         <div class="item-list" id="webList"></div>
-
         <div class="form-drawer" id="webForm" style="display:none;">
-          <div class="form-drawer-header">
+          <div class="form-drawer-head">
             <h3 id="webFormTitle">Add digital product</h3>
-            <button class="drawer-close" id="cancelWebBtn2">&times;</button>
+            <button class="drawer-close" id="cancelWebX">&times;</button>
           </div>
           <div class="form-grid">
             <div class="field-group">
               <label>Display index</label>
-              <input type="text" id="wIndex" placeholder="e.g. 06">
+              <input type="text" id="wIndex" placeholder="06">
             </div>
             <div class="field-group">
               <label>Type / Category</label>
@@ -291,18 +385,18 @@
             </div>
             <div class="field-group span-2">
               <label>Product name</label>
-              <input type="text" id="wName" placeholder="Product or platform name">
+              <input type="text" id="wName" placeholder="Platform or product name">
             </div>
             <div class="field-group span-2">
               <label>Description</label>
-              <textarea id="wDesc" rows="3" placeholder="What the product does and who it is for..."></textarea>
+              <textarea id="wDesc" rows="3" placeholder="What it does and who it is for..."></textarea>
             </div>
             <div class="field-group span-2">
               <label>Live site URL</label>
               <input type="url" id="wUrl" placeholder="https://your-product.web.app/">
             </div>
             <div class="field-group span-2">
-              <label>Footer label <em>(short description shown at bottom of card)</em></label>
+              <label>Footer label <em>short note shown at card bottom</em></label>
               <input type="text" id="wLabel" placeholder="e.g. Student learning platform">
             </div>
           </div>
@@ -311,16 +405,15 @@
             <button class="btn-primary" id="saveWebBtn">Save product</button>
           </div>
         </div>
-
         <div class="export-box" id="webExport" style="display:none;">
-          <div class="export-header">
+          <div class="export-head">
             <div>
-              <h4>Generated HTML</h4>
-              <p>Copy this and paste it inside the <code>web-grid</code> div in <code>index.html</code></p>
+              <h4>Generated HTML for <code>index.html</code></h4>
+              <p>Paste inside the <code>web-grid</code> div in your index.html file.</p>
             </div>
-            <button class="btn-secondary copy-btn" data-target="webExportCode">Copy</button>
+            <button class="btn-copy" data-target="webExportCode">Copy</button>
           </div>
-          <textarea id="webExportCode" rows="16" readonly spellcheck="false"></textarea>
+          <textarea id="webExportCode" rows="18" readonly spellcheck="false"></textarea>
         </div>
       </section>
 
@@ -331,17 +424,15 @@
         <div class="panel-header">
           <div>
             <h2>Skills and Capabilities</h2>
-            <p>Manage the capability cards shown in the Skills section of your portfolio.</p>
+            <p>Manage the capability cards in your portfolio Skills section.</p>
           </div>
           <button class="btn-primary" id="addSkillBtn">+ Add skill</button>
         </div>
-
         <div class="item-list" id="skillList"></div>
-
         <div class="form-drawer" id="skillForm" style="display:none;">
-          <div class="form-drawer-header">
-            <h3 id="skillFormTitle">Add skill category</h3>
-            <button class="drawer-close" id="cancelSkillBtn2">&times;</button>
+          <div class="form-drawer-head">
+            <h3 id="skillFormTitle">Add skill</h3>
+            <button class="drawer-close" id="cancelSkillX">&times;</button>
           </div>
           <div class="form-grid">
             <div class="field-group">
@@ -353,8 +444,8 @@
               <input type="text" id="sTitle" placeholder="e.g. Project Management">
             </div>
             <div class="field-group span-2">
-              <label>Description <em>(tools, technologies and areas covered)</em></label>
-              <textarea id="sDesc" rows="4" placeholder="List the specific tools, technologies and skills in this category..."></textarea>
+              <label>Description <em>tools, technologies and areas</em></label>
+              <textarea id="sDesc" rows="4" placeholder="List tools and technologies in this area..."></textarea>
             </div>
           </div>
           <div class="form-actions">
@@ -362,16 +453,115 @@
             <button class="btn-primary" id="saveSkillBtn">Save skill</button>
           </div>
         </div>
-
         <div class="export-box" id="skillExport" style="display:none;">
-          <div class="export-header">
+          <div class="export-head">
             <div>
-              <h4>Generated HTML</h4>
-              <p>Copy this and paste it inside the <code>skills-grid</code> div in <code>index.html</code></p>
+              <h4>Generated HTML for <code>index.html</code></h4>
+              <p>Paste inside the <code>skills-grid</code> div in your index.html file.</p>
             </div>
-            <button class="btn-secondary copy-btn" data-target="skillExportCode">Copy</button>
+            <button class="btn-copy" data-target="skillExportCode">Copy</button>
           </div>
           <textarea id="skillExportCode" rows="12" readonly spellcheck="false"></textarea>
+        </div>
+      </section>
+
+      <!-- ================================================
+           TAB: SPEAKING
+           ================================================ -->
+      <section class="tab-panel" id="tab-speaking">
+        <div class="panel-header">
+          <div>
+            <h2>Speaking and Community</h2>
+            <p>Manage your invited talks, webinars and speaking engagements.</p>
+          </div>
+          <button class="btn-primary" id="addSpeakBtn">+ Add talk</button>
+        </div>
+        <div class="item-list" id="speakList"></div>
+        <div class="form-drawer" id="speakForm" style="display:none;">
+          <div class="form-drawer-head">
+            <h3 id="speakFormTitle">Add talk</h3>
+            <button class="drawer-close" id="cancelSpeakX">&times;</button>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Date <em>e.g. Aug 2026</em></label>
+              <input type="text" id="spDate" placeholder="e.g. Aug 2026">
+            </div>
+            <div class="field-group">
+              <label>Format</label>
+              <select id="spFormat">
+                <option value="Virtual">Virtual</option>
+                <option value="In-Person">In-Person</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div class="field-group span-2">
+              <label>Talk title</label>
+              <input type="text" id="spTitle" placeholder="Title of your talk or presentation">
+            </div>
+            <div class="field-group span-2">
+              <label>Event / Organisation</label>
+              <input type="text" id="spEvent" placeholder="e.g. GhIE UENR Students Chapter. Virtual.">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" id="cancelSpeakBtn">Cancel</button>
+            <button class="btn-primary" id="saveSpeakBtn">Save talk</button>
+          </div>
+        </div>
+        <div class="export-box" id="speakExport" style="display:none;">
+          <div class="export-head">
+            <div>
+              <h4>Generated HTML for <code>index.html</code></h4>
+              <p>Paste inside the <code>talk-list</code> div in your index.html file.</p>
+            </div>
+            <button class="btn-copy" data-target="speakExportCode">Copy</button>
+          </div>
+          <textarea id="speakExportCode" rows="14" readonly spellcheck="false"></textarea>
+        </div>
+      </section>
+
+      <!-- ================================================
+           TAB: MILESTONES
+           ================================================ -->
+      <section class="tab-panel" id="tab-milestones">
+        <div class="panel-header">
+          <div>
+            <h2>Milestones and Achievements</h2>
+            <p>Manage the milestone cards shown in your portfolio Milestones section.</p>
+          </div>
+          <button class="btn-primary" id="addMilestoneBtn">+ Add milestone</button>
+        </div>
+        <div class="item-list" id="milestoneList"></div>
+        <div class="form-drawer" id="milestoneForm" style="display:none;">
+          <div class="form-drawer-head">
+            <h3 id="milestoneFormTitle">Add milestone</h3>
+            <button class="drawer-close" id="cancelMilestoneX">&times;</button>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Value / Headline <em>e.g. First Class, 50+, 5</em></label>
+              <input type="text" id="mValue" placeholder="e.g. First Class">
+            </div>
+            <div class="field-group">
+              <label>Description</label>
+              <input type="text" id="mDesc" placeholder="e.g. CGPA 3.88 / 4.00 - BSc EEE">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" id="cancelMilestoneBtn">Cancel</button>
+            <button class="btn-primary" id="saveMilestoneBtn">Save milestone</button>
+          </div>
+        </div>
+        <div class="export-box" id="milestoneExport" style="display:none;">
+          <div class="export-head">
+            <div>
+              <h4>Generated HTML for <code>index.html</code></h4>
+              <p>Paste inside the <code>milestone-grid</code> div in your index.html file.</p>
+            </div>
+            <button class="btn-copy" data-target="milestoneExportCode">Copy</button>
+          </div>
+          <textarea id="milestoneExportCode" rows="12" readonly spellcheck="false"></textarea>
         </div>
       </section>
 
@@ -387,85 +577,97 @@
         </div>
 
         <div class="cv-layout">
-
-          <!-- Upload area -->
-          <div class="cv-upload-card">
-            <h3>Upload your CV</h3>
-            <p>Select your CV PDF file below. The file will be read and you will get instructions to place it correctly so the Download CV buttons on your portfolio work.</p>
-
-            <div class="cv-drop-area" id="cvDropArea">
-              <div class="cv-drop-icon">📄</div>
-              <div class="cv-drop-title" id="cvDropTitle">Click to choose your CV PDF</div>
-              <div class="cv-drop-sub" id="cvDropSub">or drag and drop your file here</div>
-              <input type="file" id="cvFileInput" accept=".pdf" style="display:none;">
-            </div>
-
-            <div class="cv-file-info" id="cvFileInfo" style="display:none;">
-              <div class="cv-file-row">
+          <div class="cv-col-left">
+            <!-- Upload -->
+            <div class="cv-card">
+              <h3>Select your CV file</h3>
+              <p>Choose your CV PDF. This shows you how to place it correctly so the Download CV buttons work on your live site.</p>
+              <div class="cv-drop" id="cvDropArea">
+                <div class="cv-drop-icon">📄</div>
+                <div class="cv-drop-title">Click to choose PDF or drag here</div>
+                <div class="cv-drop-sub">Only PDF files accepted</div>
+                <input type="file" id="cvFileInput" accept=".pdf" style="display:none;">
+              </div>
+              <div class="cv-file-selected" id="cvFileSelected" style="display:none;">
                 <span class="cv-file-icon">📄</span>
-                <div>
-                  <div class="cv-file-name" id="cvFileName"></div>
-                  <div class="cv-file-size" id="cvFileSize"></div>
+                <div class="cv-file-details">
+                  <div class="cv-file-name" id="cvFileName">-</div>
+                  <div class="cv-file-size" id="cvFileSize">-</div>
                 </div>
-                <button class="cv-remove-btn" id="cvRemoveBtn">&times;</button>
+                <button class="cv-file-remove" id="cvRemoveBtn">&times;</button>
               </div>
+            </div>
+
+            <!-- Status check -->
+            <div class="cv-card">
+              <h3>Check live availability</h3>
+              <p>Test whether your CV is currently accessible on your deployed portfolio site.</p>
+              <button class="btn-primary" id="checkCvBtn">Check availability</button>
+              <div class="cv-result" id="cvResult" style="display:none;"></div>
+            </div>
+
+            <!-- Direct link -->
+            <div class="cv-card">
+              <h3>Direct download link</h3>
+              <p>Share this link so anyone can download your CV directly.</p>
+              <div class="code-block" id="cvDirectLink">https://alexander-portfolio-69333.web.app/cv/Alexander-Opoku-Dwumaah-CV.pdf</div>
+              <button class="btn-secondary" style="margin-top:12px;" id="copyCvLinkBtn">Copy link</button>
+              <input type="text" id="cvLinkInput" value="https://alexander-portfolio-69333.web.app/cv/Alexander-Opoku-Dwumaah-CV.pdf" style="position:fixed;top:-9999px;opacity:0;">
             </div>
           </div>
 
-          <!-- Steps -->
-          <div class="cv-steps-card">
-            <h3>How to get it live</h3>
-
-            <div class="step-list">
-              <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-content">
-                  <h4>Save your file with this exact name</h4>
-                  <div class="code-block">Alexander-Opoku-Dwumaah-CV.pdf</div>
+          <div class="cv-col-right">
+            <div class="cv-card">
+              <h3>How to get your CV live</h3>
+              <div class="step-list">
+                <div class="step-row">
+                  <div class="step-num">1</div>
+                  <div>
+                    <h4>Name your file exactly as shown</h4>
+                    <div class="code-block">Alexander-Opoku-Dwumaah-CV.pdf</div>
+                  </div>
                 </div>
-              </div>
-              <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-content">
-                  <h4>Copy the file into this folder</h4>
-                  <div class="code-block">C:\Users\aleks\Desktop\WebDev_1\portfolio\cv\</div>
+                <div class="step-row">
+                  <div class="step-num">2</div>
+                  <div>
+                    <h4>Place the file in your cv folder</h4>
+                    <div class="code-block">C:\Users\aleks\Desktop\WebDev_1\portfolio\cv\</div>
+                  </div>
                 </div>
-              </div>
-              <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-content">
-                  <h4>Open PowerShell in your portfolio folder and run</h4>
-                  <div class="code-block">firebase deploy --only hosting</div>
+                <div class="step-row">
+                  <div class="step-num">3</div>
+                  <div>
+                    <h4>Open PowerShell in your portfolio folder and run</h4>
+                    <div class="code-block">firebase deploy --only hosting</div>
+                  </div>
                 </div>
-              </div>
-              <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-content">
-                  <h4>Test the download button</h4>
-                  <p>Visit your live portfolio and click "Download CV" to confirm the file downloads correctly.</p>
-                  <a href="https://alexander-portfolio-69333.web.app/#contact" target="_blank" class="btn-secondary" style="margin-top:10px;display:inline-flex;">Open live site &nearr;</a>
+                <div class="step-row">
+                  <div class="step-num">4</div>
+                  <div>
+                    <h4>Test the download button on your live site</h4>
+                    <p>Visit the portfolio, click "Download CV" and confirm the file saves correctly.</p>
+                    <a href="https://alexander-portfolio-69333.web.app/#contact" target="_blank" class="btn-secondary" style="display:inline-flex;margin-top:10px;">Open contact section &#8599;</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Status check -->
-          <div class="cv-check-card">
-            <h3>Check if CV is live</h3>
-            <p>Test whether the CV file is currently accessible on your deployed site.</p>
-            <button class="btn-primary" id="checkCvBtn">Check CV availability</button>
-            <div class="cv-result" id="cvResult" style="display:none;"></div>
+      <!-- ================================================
+           TAB: ACTIVITY LOG
+           ================================================ -->
+      <section class="tab-panel" id="tab-activity">
+        <div class="panel-header">
+          <div>
+            <h2>Activity Log</h2>
+            <p>A record of changes made in this admin session.</p>
           </div>
-
-          <!-- Current CV link -->
-          <div class="cv-link-card">
-            <h3>Direct CV link</h3>
-            <p>Share this link directly so people can download your CV from anywhere.</p>
-            <div class="code-block selectable">https://alexander-portfolio-69333.web.app/cv/Alexander-Opoku-Dwumaah-CV.pdf</div>
-            <button class="btn-secondary copy-btn" data-target="cvLinkText" style="margin-top:12px;" id="copyCvLink">Copy link</button>
-            <input type="text" id="cvLinkText" value="https://alexander-portfolio-69333.web.app/cv/Alexander-Opoku-Dwumaah-CV.pdf" style="position:absolute;opacity:0;pointer-events:none;">
-          </div>
-
+          <button class="btn-secondary" id="clearActivityBtn">Clear log</button>
+        </div>
+        <div class="activity-list" id="activityList">
+          <div class="activity-empty">No activity yet. Start editing your portfolio content.</div>
         </div>
       </section>
 
@@ -476,60 +678,37 @@
         <div class="panel-header">
           <div>
             <h2>Settings</h2>
-            <p>Admin password, portfolio links and data management.</p>
+            <p>Manage your admin password, portfolio links and data.</p>
           </div>
         </div>
 
         <div class="settings-layout">
-
           <div class="settings-card">
             <h3>Change admin password</h3>
-            <p>Update the password used to access this admin dashboard.</p>
-            <div class="field-group">
-              <label>Current password</label>
-              <input type="password" id="currentPass" placeholder="Current password">
-            </div>
-            <div class="field-group">
-              <label>New password <em>(min 8 characters)</em></label>
-              <input type="password" id="newPass" placeholder="New password">
-            </div>
-            <div class="field-group">
-              <label>Confirm new password</label>
-              <input type="password" id="confirmPass" placeholder="Repeat new password">
-            </div>
+            <p>Update the password used to access this admin panel. Min 8 characters.</p>
+            <div class="field-group"><label>Current password</label><input type="password" id="currentPass" placeholder="Current password"></div>
+            <div class="field-group"><label>New password</label><input type="password" id="newPass" placeholder="New password"></div>
+            <div class="field-group"><label>Confirm new password</label><input type="password" id="confirmPass" placeholder="Repeat new password"></div>
             <div class="settings-msg" id="passMsg"></div>
             <button class="btn-primary" id="changePassBtn">Update password</button>
           </div>
 
           <div class="settings-card">
             <h3>Portfolio links</h3>
-            <p>Quick access to your portfolio management tools.</p>
+            <p>Quick access to all portfolio tools.</p>
             <div class="link-list">
-              <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="settings-link">
-                <span>Live portfolio</span>
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg>
-              </a>
-              <a href="https://console.firebase.google.com/project/alexander-portfolio-69333/hosting" target="_blank" class="settings-link">
-                <span>Firebase Hosting Console</span>
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg>
-              </a>
-              <a href="https://github.com/alexanderodwumaah-blip/alexander-portfolio" target="_blank" class="settings-link">
-                <span>GitHub Repository</span>
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg>
-              </a>
-              <a href="index.html" target="_blank" class="settings-link">
-                <span>Portfolio (local preview)</span>
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg>
-              </a>
+              <a href="https://alexander-portfolio-69333.web.app" target="_blank" class="settings-link"><span>Live portfolio</span><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg></a>
+              <a href="https://console.firebase.google.com/project/alexander-portfolio-69333/hosting" target="_blank" class="settings-link"><span>Firebase Hosting</span><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg></a>
+              <a href="https://github.com/alexanderodwumaah-blip/alexander-portfolio" target="_blank" class="settings-link"><span>GitHub Repository</span><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg></a>
+              <a href="index.html" target="_blank" class="settings-link"><span>Local portfolio preview</span><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M8.636 3.5a.5.5 0 00-.5-.5H1.5A1.5 1.5 0 000 4.5v10A1.5 1.5 0 001.5 16h10a1.5 1.5 0 001.5-1.5V7.864a.5.5 0 00-1 0V14.5a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5v-10a.5.5 0 01.5-.5h6.636a.5.5 0 00.5-.5z"/><path d="M16 .5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h3.793L6.146 9.146a.5.5 0 10.708.708L15 1.707V5.5a.5.5 0 001 0v-5z"/></svg></a>
             </div>
           </div>
 
           <div class="settings-card danger-card">
             <h3>Reset all admin data</h3>
-            <p>Clears all locally stored data (projects, skills, digital work) and reloads the defaults from the portfolio. This does not affect your live site.</p>
+            <p>Clears all locally stored data and resets to portfolio defaults. Your live site is not affected until you deploy.</p>
             <button class="btn-danger" id="resetDataBtn">Reset all data</button>
           </div>
-
         </div>
       </section>
 

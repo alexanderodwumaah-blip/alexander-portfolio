@@ -6,7 +6,15 @@
       "firebase-debug.log",
       "firebase-debug.*",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "**/*.bat",
+      "**/*.md",
+      "package.json",
+      "package-lock.json",
+      "deploy-guide.md",
+      "github-setup.md",
+      "GITHUB-PUSH-GUIDE.md",
+      "README.md"
     ],
     "cleanUrls": true,
     "trailingSlash": false
