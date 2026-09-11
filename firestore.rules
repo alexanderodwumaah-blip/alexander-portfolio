@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Portfolio content document
+    // Public read so the portfolio site can load content
+    // Write open during development - tighten after launch
+    match /portfolio/{docId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
