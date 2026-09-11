@@ -9,6 +9,13 @@
 const DEFAULT_PASS = 'aod@admin2026';
 
 // ------------------------------------------------------------
+// MOBILE SIDEBAR TOGGLE
+// ------------------------------------------------------------
+document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+  document.getElementById('adminSidebar').classList.toggle('open');
+});
+
+// ------------------------------------------------------------
 // AUTH
 // ------------------------------------------------------------
 function getPass() {
@@ -193,6 +200,9 @@ document.getElementById('addProjectBtn').addEventListener('click', () => {
 document.getElementById('cancelProjectBtn').addEventListener('click', () => {
   document.getElementById('projectForm').style.display = 'none';
 });
+document.getElementById('cancelProjectBtn2').addEventListener('click', () => {
+  document.getElementById('projectForm').style.display = 'none';
+});
 
 document.getElementById('saveProjectBtn').addEventListener('click', () => {
   const key = document.getElementById('pKey').value.trim().replace(/\s+/g, '');
@@ -293,6 +303,9 @@ document.getElementById('addWebBtn').addEventListener('click', () => {
 });
 
 document.getElementById('cancelWebBtn').addEventListener('click', () => {
+  document.getElementById('webForm').style.display = 'none';
+});
+document.getElementById('cancelWebBtn2').addEventListener('click', () => {
   document.getElementById('webForm').style.display = 'none';
 });
 
@@ -397,6 +410,9 @@ document.getElementById('addSkillBtn').addEventListener('click', () => {
 document.getElementById('cancelSkillBtn').addEventListener('click', () => {
   document.getElementById('skillForm').style.display = 'none';
 });
+document.getElementById('cancelSkillBtn2').addEventListener('click', () => {
+  document.getElementById('skillForm').style.display = 'none';
+});
 
 document.getElementById('saveSkillBtn').addEventListener('click', () => {
   if (!document.getElementById('sTitle').value.trim()) {
@@ -434,28 +450,91 @@ function renderSkillExport() {
 }
 
 // ------------------------------------------------------------
-// CV CHECK
+// CV TAB — drag-and-drop + file picker
 // ------------------------------------------------------------
+const cvDropArea  = document.getElementById('cvDropArea');
+const cvFileInput = document.getElementById('cvFileInput');
+const cvFileInfo  = document.getElementById('cvFileInfo');
+
+cvDropArea.addEventListener('click', () => cvFileInput.click());
+
+cvDropArea.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  cvDropArea.classList.add('drag-over');
+});
+
+cvDropArea.addEventListener('dragleave', () => {
+  cvDropArea.classList.remove('drag-over');
+});
+
+cvDropArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  cvDropArea.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) handleCvFile(file);
+});
+
+cvFileInput.addEventListener('change', () => {
+  const file = cvFileInput.files[0];
+  if (file) handleCvFile(file);
+});
+
+document.getElementById('cvRemoveBtn').addEventListener('click', () => {
+  cvFileInput.value = '';
+  cvFileInfo.style.display  = 'none';
+  cvDropArea.style.display  = 'block';
+});
+
+function handleCvFile(file) {
+  if (!file.name.endsWith('.pdf')) {
+    alert('Please select a PDF file.');
+    return;
+  }
+  const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+  document.getElementById('cvFileName').textContent = file.name;
+  document.getElementById('cvFileSize').textContent = sizeMB + ' MB';
+  cvFileInfo.style.display = 'block';
+  cvDropArea.style.display = 'none';
+  // Update overview CV status
+  document.getElementById('ov-cv').textContent     = 'Ready';
+  document.getElementById('ov-cv-foot').textContent = file.name;
+}
+
+// CV CHECK
 document.getElementById('checkCvBtn').addEventListener('click', async () => {
-  const result = document.getElementById('cvCheckResult');
+  const result = document.getElementById('cvResult');
   result.style.display = 'none';
   try {
     const res = await fetch('cv/Alexander-Opoku-Dwumaah-CV.pdf', { method: 'HEAD' });
     result.style.display = 'block';
     if (res.ok) {
-      result.className = 'cv-check-result ok';
-      result.textContent = 'CV is available and ready for download.';
-      document.getElementById('cvStatusTitle').textContent = 'CV is live';
-      document.getElementById('cvStatusText').textContent  = 'Alexander-Opoku-Dwumaah-CV.pdf is accessible on the site.';
+      result.className = 'cv-result ok';
+      result.textContent = 'CV is live and available for download on your portfolio.';
+      document.getElementById('ov-cv').textContent      = 'Live';
+      document.getElementById('ov-cv-foot').textContent = 'accessible on site';
     } else {
-      result.className = 'cv-check-result fail';
-      result.textContent = 'CV file not found (HTTP ' + res.status + '). Make sure the file is in the cv/ folder and the site is deployed.';
+      result.className = 'cv-result fail';
+      result.textContent = 'CV not found (' + res.status + '). Place the file in the cv/ folder and deploy.';
     }
   } catch {
     result.style.display = 'block';
-    result.className = 'cv-check-result fail';
-    result.textContent = 'Could not check CV. Make sure you are viewing this on the live site or a local server.';
+    result.className = 'cv-result fail';
+    result.textContent = 'Could not check. Open this page on the live Firebase site to test.';
   }
+});
+
+// Copy CV link
+document.getElementById('copyCvLink').addEventListener('click', () => {
+  const el = document.getElementById('cvLinkText');
+  el.style.position = 'fixed';
+  el.style.opacity = '1';
+  el.select();
+  document.execCommand('copy');
+  el.style.position = 'absolute';
+  el.style.opacity = '0';
+  const btn = document.getElementById('copyCvLink');
+  btn.textContent = 'Copied!';
+  setTimeout(() => { btn.textContent = 'Copy link'; }, 2500);
 });
 
 // ------------------------------------------------------------
